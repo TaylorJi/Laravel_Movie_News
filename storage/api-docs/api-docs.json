@@ -11,8 +11,8 @@
                 "tags": [
                     "News"
                 ],
-                "summary": "Get all news",
-                "description": "Read all the news in the database",
+                "summary": "Get all News",
+                "description": "Read all the News in the database",
                 "operationId": "index",
                 "responses": {
                     "200": {
@@ -20,6 +20,189 @@
                     },
                     "400": {
                         "description": "Invalid status value"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Add new News",
+                "description": "Add News data.",
+                "operationId": "storeNews",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "picUrl"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "title",
+                                        "description",
+                                        "picUrl"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/news/{id}": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Get News information",
+                "description": "Returns News data",
+                "operationId": "getNewsById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "News id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Update existing News",
+                "description": "Returns updated News data",
+                "operationId": "updateNews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "News id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "picUrl"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "title",
+                                        "description",
+                                        "picUrl"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/news/destroy/{id}": {
+            "delete": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Delete existing News",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteNews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "News id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
                 }
             }

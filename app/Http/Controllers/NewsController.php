@@ -7,16 +7,37 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades;
 use App\Models\News;
 use App\Http\Controllers\Controller;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
 
 
 class NewsController extends Controller
 {
-    
+
+    /**
+     * @OA\Get(
+     * path="/api/news",
+     * tags={"News"},
+     * summary="Get all News",
+     * description="Read all the News in the database",
+     * operationId="index",
+     * @OA\Response(
+     * response=200,
+     * description="successful operation"
+     * ),
+     * @OA\Response(
+     * response=400,
+     * description="Invalid status value"
+     * )
+     * )
+     */
     public function index()
     {
-        $news = News::where('user_id', Auth::id())->latest('updated_at')->get();
-        return view("news.index", ['news' => $news]);
-        
+        // $news = News::where('user_id', Auth::id())->latest('updated_at')->get();
+        // return view("news.index", ['news' => $news]);
+
+        $news = News::latest()->paginate(5);
+        return view('news.index', ['news' => $news])->with(request()->input('page'));
     }
 
     /**
@@ -28,30 +49,103 @@ class NewsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     * path="/api/news",
+     * operationId="storeNews",
+     * tags={"News"},
+     * summary="Add new News",
+     * description="Add News data.",
+     * @OA\RequestBody(
+     * required=true,
+     * @OA\JsonContent(required={"title", "description", "picUrl"})
+     * ),
+     * @OA\Response(
+     * response=201,
+     * description="Successful operation",
+     * @OA\JsonContent(required={"title", "description", "picUrl"})
+     * ),
+     * @OA\Response(
+     * response=400,
+     * description="Bad Request"
+     * ),
+     * @OA\Response(
+     * response=401,
+     * description="Unauthenticated",
+     * ),
+     * @OA\Response(
+     * response=403,
+     * description="Forbidden"
+     * )
+     * )
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:120',
-            'description' => 'required|max:10000',
+        // $request->validate([
+        //     'title' => 'required|max:120',
+        //     'description' => 'required|max:10000',
 
+        // ]);
+        // Auth::user()->news()->create([
+        //     // 'uuid' => Str::uuid(),
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'picUrl' => $request->picUrl,
+        // ]);
+        // return to_route('news.index');
+
+        // validate the input
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'picUrl' => 'required',
         ]);
-        Auth::user()->news()->create([
-            // 'uuid' => Str::uuid(),
-            'title' => $request->title,
-            'description' => $request->description,
-            'picUrl' => $request->picUrl,
-        ]);
-        return to_route('news.index');
+        // create a new newsletter
+        News::create($request->all());
+        // redirect the user to the newsletters list page and send a friendly message
+        return redirect()
+            ->route('news.index')
+            ->with('success', 'Newsletter created successfully.');
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     * path="/api/news/{id}",
+     * operationId="getNewsById",
+     * tags={"News"},
+     * summary="Get News information",
+     * description="Returns News data",
+     * @OA\Parameter(
+     * name="id",
+     * description="News id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Successful operation",
+     * ),
+     * @OA\Response(
+     * response=400,
+     * description="Bad Request"
+     * ),
+     * @OA\Response(
+     * response=401,
+     * description="Unauthenticated",
+     * ),
+     * @OA\Response(
+     * response=403,
+     * description="Forbidden"
+     * )
+     * )
      */
     public function show(string $id)
     {
-        //
+        return view('news.show', [
+            'news' => News::findOrFail($id),
+        ]);
     }
 
     /**
@@ -65,17 +159,60 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     * path="/api/news/{id}",
+     * operationId="updateNews",
+     * tags={"News"},
+     * summary="Update existing News",
+     * description="Returns updated News data",
+     * @OA\Parameter(
+     * name="id",
+     * description="News id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\RequestBody(
+     * required=true,
+     * @OA\JsonContent(required={"title", "description", "picUrl"})
+     * ),
+     * @OA\Response(
+     * response=202,
+     * description="Successful operation",
+     * @OA\JsonContent(required={"title", "description", "picUrl"})
+     * ),
+     * @OA\Response(
+     * response=400,
+     * description="Bad Request"
+     * ),
+     * @OA\Response(
+     * response=401,
+     * description="Unauthenticated",
+     * ),
+     * @OA\Response(
+     * response=403,
+     * description="Forbidden"
+     * ),
+     * @OA\Response(
+     * response=404,
+     * description="Resource Not Found"
+     * )
+     * )
      */
-    public function update(Request $request, news $news)
+
+    public function update(Request $request, News $news)
     {
         $request->validate([
             'id' => 'required',
             'title' => 'required',
             'description' => 'required',
         ]);
-        $news = news::find($request->get('id'));
+        $news = News::find($request->get('id'));
 
+        $output = new ConsoleOutput();
+        $output->writeln('NEWSLETTER OBJECT: ' . $news);
 
         // Getting values from the blade template form
         $news->title = $request->get('title');
@@ -86,11 +223,42 @@ class NewsController extends Controller
 
         return redirect()->route('news.index')
             ->with('success', 'News updated successfully');
-
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     * path="/news/destroy/{id}",
+     * operationId="deleteNews",
+     * tags={"News"},
+     * summary="Delete existing News",
+     * description="Deletes a record and returns no content",
+     * @OA\Parameter(
+     * name="id",
+     * description="News id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=204,
+     * description="Successful operation",
+     * @OA\JsonContent()
+     * ),
+     * @OA\Response(
+     * response=401,
+     * description="Unauthenticated",
+     * ),
+     * @OA\Response(
+     * response=403,
+     * description="Forbidden"
+     * ),
+     * @OA\Response(
+     * response=404,
+     * description="Resource Not Found"
+     * )
+     * )
      */
     public function destroy($id)
     {
@@ -100,7 +268,6 @@ class NewsController extends Controller
         // redirect to students list page
         return redirect()->route('news.index')
             ->with('success', 'News deleted successfully');
-
     }
 
     public function finalview()
