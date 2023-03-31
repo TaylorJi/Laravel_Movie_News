@@ -13,7 +13,7 @@
     <div class="flex justify-between items-center">
         <h2 class="text-lg font-medium">Newsletters List</h2>
         <div class="flex space-x-2">
-            <a href="{{ route('news.create') }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Create News</a>
+            <a href="{{ route('news.create') }}" class="text-white px-4 py-2 rounded-md transition" style="background-color: rgb(11, 234, 26)">Create News</a>
             {{-- <a href="{{ route('news.article') }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Article</a> --}}
         </div>
     </div>
@@ -48,9 +48,9 @@
                     <td class="border px-4 py-2">{{ $item->created_at }}</td>
                     <td class="border px-4 py-2">{{ $item->updated_at }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('news.show', $item->id) }}" class="bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-700 transition">Generate</a>
-                        <a href="{{ route('news.edit', $item->id) }}" class="bg-red-600 text-white px-2 py-1 rounded-md hover:bg-red-700 transition">Edit</a>
-                        <a href="{{ route('news.destroy', $item->id) }}" class="bg-red-600 text-white px-2 py-1 rounded-md hover:bg-red-700 transition">Del</a>
+                        <a href="{{ route('news.show', $item->id) }}" class="text-white px-2 py-1 rounded-md transition" style="background-color: rgb(75, 75, 237)">Generate</a>
+                        <a href="{{ route('news.edit', $item->id) }}" class="text-white px-2 py-1 rounded-md transition" style="background-color: green">Edit</a>
+                        <a href="{{ route('news.destroy', $item->id) }}" class="text-white px-2 py-1 rounded-md transition" style="background-color: red">Del</a>
                     </td>
                 </tr>
             @endforeach

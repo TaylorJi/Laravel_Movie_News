@@ -51,7 +51,7 @@
         </div>
 
         <div class="flex justify-center mt-6">
-            <button type="submit" class="px-4 py-2 font-semibold text-white bg-red-500 rounded hover:bg-blue-700">
+            <button type="submit" class="px-4 py-2 font-semibold text-white rounded" style="background-color: rgb(48, 220, 117)">
                 Update
             </button>
         </div>

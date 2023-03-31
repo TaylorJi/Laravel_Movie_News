@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->foreign('id')->references('id')->on('news');
             $table->string('title');
-            $table->longText('logoUrl');
-            $table->boolean('is_active')->default(0);
+            $table->longText('description');
+            $table->longText('picUrl');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('articles');
     }
 };
