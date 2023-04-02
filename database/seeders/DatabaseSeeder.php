@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(UsersTableSeeder::class);
         $this->call(NewsTableSeeder::class);
-        // $this->call(ArticlesTableSeeder::class);
+        $this->call(ArticlesTableSeeder::class);
         // \App\Models\News::factory(3)->create();
 
     }
