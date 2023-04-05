@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Articles;
 
+
 class SearchController extends Controller
 {
 

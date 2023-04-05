@@ -8,6 +8,8 @@
                 <th class="px-4 py-2">Description</th>
                 <th class="px-4 py-2">Created Date</th>
                 <th class="px-4 py-2">Last Updated Date</th>
+                <th class="px-4 py-2">Type</th>
+
                 <th class="px-4 py-2">&nbsp;</th>
             </tr>
         </thead>
@@ -15,7 +17,7 @@
             @if ($results->count() > 0)
                 <ul>
                     @foreach ($results as $result)
-                        <tr>
+                        <tr style="text-align: center">
                             <td class="border px-4 py-2">{{ $result->id }}</td>
                             <td class="border px-4 py-2">{{ $result->title }}</td>
                             <td class="border px-4 py-2">{{ $result->description }}</td>
@@ -24,7 +26,8 @@
                             <td class="border px-4 py-2">
                                 @if (empty($result->description))
                                     {{-- This is a News object --}}
-                                    <a href="{{ route('news.show', $result->id) }}"
+                                    <p>News</p>
+                                    {{-- <a href="{{ route('news.show', $result->id) }}"
                                         class="text-white px-2 py-1 rounded-md transition"
                                         style="background-color: rgb(75, 75, 237)">View</a>
                                     <a href="{{ route('news.show', $result->id) }}"
@@ -32,19 +35,19 @@
                                         style="background-color: green">Edit</a>
                                     <a href="{{ route('news.delete', $result->id) }}"
                                         class="text-white px-2 py-1 rounded-md transition"
-                                        style="background-color: red">Del</a>
+                                        style="background-color: red">Del</a> --}}
                                 @else
                                     {{-- This is an Article object --}}
-                                    <a href="{{ route('articles.show', $result->id) }}"
+                                    <p>Article</p>
+                                    {{-- <a href="{{ route('articles.show', $result->id) }}"
                                         class="text-white px-2 py-1 rounded-md transition"
                                         style="background-color: rgb(75, 75, 237)">View</a>
                                     <a href="{{ route('articles.show', $result->id) }}"
                                         class="text-white px-2 py-1 rounded-md transition"
-                                        style="background-color: green">Edit</a>
+                                        style="background-color: green">Edit</a> --}}
                                     {{-- <a href="{{ route('articles.destroy', $result->id) }}"
                                         class="text-white px-2 py-1 rounded-md transition"
                                         style="background-color: red">Del</a> --}}
-                                        {{-- must know newsId and current_id  --}}
                                 @endif
                             </td>
                             <td class="border px-4 py-2"></td>
@@ -56,20 +59,4 @@
             @endif
         </tbody>
     </table>
-
-
-
-
-
-
-    {{-- @if ($results->count() > 0)
-        <ul>
-            @foreach ($results as $result)
-                <li>{{ $result->id }}</li>
-                <li>{{ $result->title }}</li>
-            @endforeach
-        </ul>
-    @else
-        <p>No results found.</p>
-    @endif --}}
 </x-app-layout>
