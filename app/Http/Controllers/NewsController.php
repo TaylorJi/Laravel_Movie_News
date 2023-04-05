@@ -96,8 +96,7 @@ class NewsController extends Controller
         // validate the input
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'picUrl' => 'required',
+            'logoUrl' => 'required',
         ]);
         // create a new newsletter
         News::create($request->all());
@@ -260,7 +259,7 @@ class NewsController extends Controller
      * )
      * )
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $news = news::find($id);
         // delete the student
@@ -270,15 +269,25 @@ class NewsController extends Controller
             ->with('success', 'News deleted successfully');
     }
 
-    public function finalview()
+    public function delete(string $id)
     {
-        $news = News::whereBelongsTo(Auth::user())->latest('updated_at')->get();
-        return view("news.finalview", ['news' => $news]);
+        $news = news::find($id);
+        // delete the student
+        $news->delete();
+        // redirect to students list page
+        return redirect()->route('news.index')
+            ->with('success', 'News deleted successfully');
     }
 
-    public function welcome()
-    {
-        $news = News::latest('updated_at')->get();
-        return view("welcome", ['news' => $news]);
-    }
+    // public function finalview()
+    // {
+    //     $news = News::whereBelongsTo(Auth::user())->latest('updated_at')->get();
+    //     return view("news.finalview", ['news' => $news]);
+    // }
+
+    // public function welcome()
+    // {
+    //     $news = News::latest('updated_at')->get();
+    //     return view("welcome", ['news' => $news]);
+    // }
 }

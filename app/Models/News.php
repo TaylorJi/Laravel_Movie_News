@@ -12,13 +12,17 @@ class News extends Model
 
     protected $fillable = [
         'title',
-        'description',
-        'picUrl',
+        'logoUrl',
         'is_active' => 1
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Articles::class);
     }
 }

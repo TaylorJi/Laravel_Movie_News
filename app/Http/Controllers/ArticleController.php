@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
 use App\Models\Articles;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -15,40 +14,21 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
-        // return view('articles.index', ['articles' => $articles])->with(request()->input('page'));
         $articles = Articles::with('newsletter')->latest()->paginate(5);
         return view('articles.index', ['articles' => $articles])->with(request()->input('page'));
-        // $newsletter_id = <newsletter_id>;
-        // $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
-        // return view('articles.index', ['articles' => $articles])->with(request()->input('page'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($newsletter_id)
     {
-        return view('articles.create');
+        return view('articles.create', ['newsletter_id' => $newsletter_id]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //         'picUrl' => 'required',
-    //     ]);
-
-    //     $validatedData['newsletter_id'] = $request->newsletter_id; // Set newsletter ID
-
-    //     Articles::create($validatedData);
-
-    //     return redirect()->route('articles.index')->with('success', 'Article created successfully.');
-    // }
     public function store(Request $request)
     {
         $request->validate([
@@ -57,10 +37,8 @@ class ArticleController extends Controller
             'picUrl' => 'required',
         ]);
 
-        // Get the ID of the most recently created News instance
-        $newsletter_id = News::latest()->value('id');
+        $newsletter_id = $request->input('newsletter_id');
 
-        // Create a new Article instance with the newsletter_id value set
         $article = new Articles([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
@@ -69,7 +47,7 @@ class ArticleController extends Controller
         ]);
         $article->save();
 
-        return redirect()->route('articles.index')->with('success', 'Article added successfully.');
+        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article added successfully.');
     }
 
 
@@ -79,7 +57,10 @@ class ArticleController extends Controller
     public function show(string $newsletter_id)
     {
         $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
-        return view('articles.index', ['articles' => $articles])->with(request()->input('page'));
+        return view('articles.index', [
+            'articles' => $articles,
+            'newsletter_id' => $newsletter_id,
+        ])->with(request()->input('page'));
     }
 
     /**
@@ -121,8 +102,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, string $newsletter_id)
     {
-        //
+        $article = Articles::find($id);
+        $article->delete();
+        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article deleted successfully.');
     }
 }

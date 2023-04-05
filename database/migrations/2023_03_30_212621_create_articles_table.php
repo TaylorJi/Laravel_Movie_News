@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('newsletter_id');
-            $table->foreign('newsletter_id')->references('id')->on('news');
+            $table->foreign('newsletter_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->longText('description');
             $table->longText('picUrl');
