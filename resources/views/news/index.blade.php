@@ -84,6 +84,6 @@
         <div>Jashinjot()</div>
         <div>Johnathan(A01256345)</div>
         <div>Siwoon Lim (A01181611)</div>
-        <div>Taylor Ji()</div>
+        <div>Taylor Ji(A01304056)</div>
     </div>
 </x-app-layout>
