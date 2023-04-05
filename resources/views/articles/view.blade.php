@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div style="margin: 20px">
+    <div style="margin: 80px; border: 3px solid #000000; padding: 20px;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Articles') }}
@@ -9,14 +9,14 @@
         <style>
             .article-title {
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 22px;
                 margin-bottom: 50px;
-                margin-left: 50px;
+                margin-left: 100px;
             }
 
             .title {
                 color: blue;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: bold;
                 text-align: center;
                 margin: 20px 0;
@@ -48,8 +48,9 @@
             .article-image {
                 display: block;
                 float: left;
-                width: 25%;
-                height: auto;
+                width: 300px;
+                height: 400px;
+                margin-left: 100px;
             }
 
             .article-content {
@@ -59,12 +60,31 @@
 
             .article-description {
                 float: right;
-                width: 75%;
-                height: 100%;
+                width: 500px%;
+                height: 400px;
+                margin-left: 100px;
+                margin-right: 50px;
+                font-size: 18px;
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+                line-height: 1.5;
+                max-height: calc(1.5em * 100);
+            }
+
+            .article-logo {
+                display: block;
+                margin: 0 auto;
+                width: 100px;
+                height: 100px;
             }
         </style>
         @if ($articles->isNotEmpty())
-            <h1 class="title">Newsletter #{{ $articles[0]->newsletter_id }} - {{ $articles[0]->updated_at }}</h1>
+            <img src="{{ $news[0]->logoUrl }}" class="article-logo" alt="{{ $articles[0]->title }}">
+            <h1 class="title">
+                {{ __('Newsletter #:number - :date', ['number' => $articles[0]->newsletter_id, 'date' => $articles[0]->updated_at->format('M d, Y')]) }}
+            </h1>
 
             @foreach ($articles as $item)
                 <table class="table">
@@ -82,9 +102,6 @@
                         </tr>
                     </tbody>
                 </table>
-                @unless ($loop->last)
-                    <div class="row-divider"></div>
-                @endunless
             @endforeach
         @else
             <table class="table">

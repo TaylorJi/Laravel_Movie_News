@@ -17,13 +17,13 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/', function () {
+//     return view('login');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -53,7 +53,7 @@ Route::get('/articles/create/{newsletter_id}', [ArticleController::class, 'creat
 Route::post('articles/store', [ArticleController::class, 'store'])->name('articles.store');
 Route::get('articles/destroy/{id}/{newsletter_id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 
-Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
+// Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
 
 Route::resource("/news", NewsController::class )->middleware(['auth']);
 

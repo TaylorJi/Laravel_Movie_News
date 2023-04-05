@@ -26,7 +26,7 @@
                 <tr>
                     <th class="px-4 py-2">ID</th>
                     <th class="px-4 py-2">Title</th>
-                    <th class="px-4 py-2">image</th>
+                    <th class="px-4 py-2">Logo</th>
                     <th class="px-4 py-2">Active</th>
                     <th class="px-4 py-2">Created Date</th>
                     <th class="px-4 py-2">Last Updated Date</th>
@@ -39,8 +39,10 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $item->id }}</td>
                         <td class="border px-4 py-2">{{ $item->title }}</td>
-                        <td class="border px-4 py-2"><img src="{{ $item->logoUrl }}"
-                                class="w-12 h-30 object-cover rounded" alt="{{ $item->title }}"></td>
+                        <td class="border px-4 py-2" style="max-width: 150px; max-height: 100px">
+                            <img src="{{ $item->logoUrl }}" class="object-cover rounded"
+                                alt="{{ $item->title }}" style="width: 150px; height: 100px">
+                        </td>
                         <td class="border px-4 py-2">{{ $item->is_active }}</td>
                         <td class="border px-4 py-2">{{ $item->created_at }}</td>
                         <td class="border px-4 py-2">{{ $item->updated_at }}</td>

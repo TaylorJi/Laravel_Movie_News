@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -67,7 +68,9 @@ class ArticleController extends Controller
     public function view(string $newsletter_id)
     {
         $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
+        $news = News::where('id', $newsletter_id)->get();
         return view('articles.view', [
+            'news' => $news,
             'articles' => $articles,
             'newsletter_id' => $newsletter_id,
         ])->with(request()->input('page'));
