@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Articles::with('newsletter')->latest()->paginate(5);
+        $articles = Articles::with('newsletter')->paginate();
         return view('articles.index', ['articles' => $articles])->with(request()->input('page'));
     }
 
@@ -24,6 +24,7 @@ class ArticleController extends Controller
      */
     public function create($newsletter_id)
     {
+
         return view('articles.create', ['newsletter_id' => $newsletter_id]);
     }
 
@@ -38,6 +39,11 @@ class ArticleController extends Controller
         ]);
 
         $newsletter_id = $request->input('newsletter_id');
+
+        
+        $news = News::where('id', $newsletter_id)->first();
+        $news->is_active = 1;
+        $news->save();
 
         $article = new Articles([
             'title' => $request->get('title'),
@@ -56,7 +62,7 @@ class ArticleController extends Controller
      */
     public function show(string $newsletter_id)
     {
-        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
+        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->paginate();
         return view('articles.index', [
             'articles' => $articles,
             'newsletter_id' => $newsletter_id,
@@ -66,7 +72,7 @@ class ArticleController extends Controller
 
     public function view(string $newsletter_id)
     {
-        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
+        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->paginate();
         $news = News::where('id', $newsletter_id)->get();
         return view('articles.view', [
             'news' => $news,
@@ -108,7 +114,6 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.show', ['newsletter_id' => $articles->newsletter_id])
             ->with('success', 'Article updated successfully');
-
     }
 
     /**
@@ -116,6 +121,11 @@ class ArticleController extends Controller
      */
     public function destroy(string $id, string $newsletter_id)
     {
+
+        $news = News::where('id', $newsletter_id)->first();
+        $news->is_active = 0;
+        $news->save();
+
         $article = Articles::find($id);
         $article->delete();
         return redirect()->route('articles.show', ['newsletter_id' => $newsletter_id])->with('success', 'Article deleted successfully.');
