@@ -20,7 +20,7 @@
                         <tr style="text-align: center">
                             <td class="border px-4 py-2">{{ $result->id }}</td>
                             <td class="border px-4 py-2">{{ $result->title }}</td>
-                            <td class="border px-4 py-2">{{ $result->description }}</td>
+                            <td class="border px-4 py-2">{!! $result->description !!}</td>
                             <td class="border px-4 py-2">{{ $result->created_at }}</td>
                             <td class="border px-4 py-2">{{ $result->updated_at }}</td>
                             <td class="border px-4 py-2">

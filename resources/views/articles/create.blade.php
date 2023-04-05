@@ -26,11 +26,11 @@
             </div>
         @endif
 
-        <form action="{{ route('articles.store') }}" method="POST" class="mt-5 space-y-6">
+        <form action="{{ route('articles.store') }}" method="POST">
             @csrf
             <input type="hidden" name="newsletter_id" id="newsletter_id" value="{{ $newsletter_id }}">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="class=grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div class="w-full">
                     <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
                     <input type="text" id="title" name="title"
