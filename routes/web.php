@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\SearchController;
 
 // namespace App\Http\Controllers\OrgController;
 /*
@@ -55,5 +56,7 @@ Route::get('articles/destroy/{id}/{newsletter_id}', [ArticleController::class, '
 Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
 
 Route::resource("/news", NewsController::class )->middleware(['auth']);
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 require __DIR__.'/auth.php';

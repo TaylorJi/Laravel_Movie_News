@@ -5,6 +5,11 @@
                 {{ __('News') }}
             </h2>
         </x-slot>
+          <form action="{{ route('search') }}" method="get">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+
 
 
         <div class="flex justify-between items-center">
@@ -20,7 +25,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-
+      
         <table class="table-auto w-full">
             <thead>
                 <tr>

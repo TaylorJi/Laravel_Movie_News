@@ -8,12 +8,13 @@ use Illuminate\Support\Facades;
 use App\Models\News;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Laravel\Scout\Searchable;
+
 
 
 
 class NewsController extends Controller
 {
-
     /**
      * @OA\Get(
      * path="/api/news",

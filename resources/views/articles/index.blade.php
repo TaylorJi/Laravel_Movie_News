@@ -14,6 +14,10 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        <form action="{{ route('search') }}" method="get">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
 
         <div class="flex justify-between items-center">
             <h2 class="text-lg font-medium">Articles List</h2>
@@ -24,6 +28,7 @@
                     Article</a>
             </div>
         </div>
+      
 
 
         <table class="table-auto w-full">
