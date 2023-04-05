@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\DB;
 use App\Models\News;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -38,7 +38,7 @@ class NewsController extends Controller
         // $news = News::where('user_id', Auth::id())->latest('updated_at')->get();
         // return view("news.index", ['news' => $news]);
 
-        $news = News::latest()->paginate(5);
+        $news = News::latest()->orderBy('id', 'asc')->paginate(5);
         return view('news.index', ['news' => $news])->with(request()->input('page'));
     }
 
@@ -148,7 +148,7 @@ class NewsController extends Controller
             'news' => News::findOrFail($id),
         ]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -273,18 +273,16 @@ class NewsController extends Controller
     public function delete(string $id)
     {
         $news = news::find($id);
-        // delete the student
         $news->delete();
-        // redirect to students list page
         return redirect()->route('news.index')
             ->with('success', 'News deleted successfully');
     }
 
-    // public function finalview()
-    // {
-    //     $news = News::whereBelongsTo(Auth::user())->latest('updated_at')->get();
-    //     return view("news.finalview", ['news' => $news]);
-    // }
+    public function finalview()
+    {
+        $news = News::latest()->paginate();
+        return view("news.finalview", ['news' => $news])->with(request()->input('page'));
+    }
 
     public function welcome()
     {

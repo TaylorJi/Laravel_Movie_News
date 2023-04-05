@@ -15,9 +15,17 @@
         <div class="flex justify-between items-center">
             <h2 class="text-lg font-medium">Newsletters List</h2>
             <div class="flex space-x-2">
-                <a href="{{ route('news.create') }}" class="text-white px-4 py-2 rounded-md transition"
-                    style="background-color: rgb(11, 234, 26)">Create a newsletter</a>
+                <div class="flex space-x-2 mr-4">
+                    <a href="{{ route('news.create') }}" class="text-white px-4 py-2 rounded-md transition"
+                        style="background-color: rgb(11, 234, 26)">Create a newsletter</a>
+                </div>
+                <div class="flex space-x-2 ml-4">
+                    <a href="{{ route('news.finalview') }}" class="text-white px-4 py-2 rounded-md transition"
+                        style="background-color: rgb(156, 37, 95)">Show 5 active newsletters</a>
+                </div>
+
             </div>
+
         </div>
 
         @if ($message = Session::get('success'))

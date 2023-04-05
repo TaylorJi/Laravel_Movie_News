@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div style="margin: 80px; border: 3px solid #000000; padding: 20px;">
+    <div style="margin: 80px; border: 3px solid #000000; padding: 20px; display: inline-block;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Articles') }}
@@ -61,7 +61,7 @@
             .article-description {
                 float: right;
                 width: 500px%;
-                height: 400px;
+                height: 400px%;
                 margin-left: 100px;
                 margin-right: 50px;
                 font-size: 18px;
