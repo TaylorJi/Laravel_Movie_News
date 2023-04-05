@@ -26,15 +26,15 @@ class NewsTableSeeder extends Seeder
         // }
 
         $s1 = new \App\Models\News([
-            'title' => 'John',
-            'logoUrl' => "logo",
+            'title' => 'Global News',
+            'logoUrl' => "https://globalnews.ca/wp-content/themes/shaw-globalnews/_img/logos/dark/bc_2x.png",
             'is_active' => 1
         ]);
         $s1->save();
 
         $s2 = new \App\Models\News([
-            'title' => 'Johny',
-            'logoUrl' => "logio",
+            'title' => 'Movie News',
+            'logoUrl' => "https://logopond.com/logos/dae90504146a4ed356e9a2c0923de4c9.png",
             'is_active' => 1
         ]);
         $s2->save();

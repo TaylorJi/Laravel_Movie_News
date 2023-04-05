@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -34,7 +35,6 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'picUrl' => 'required',
         ]);
 
         $newsletter_id = $request->input('newsletter_id');
@@ -47,7 +47,7 @@ class ArticleController extends Controller
         ]);
         $article->save();
 
-        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article added successfully.');
+        return redirect()->route('articles.show', ['newsletter_id' => $newsletter_id])->with('success', 'Article added successfully.');
     }
 
 
@@ -58,6 +58,18 @@ class ArticleController extends Controller
     {
         $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
         return view('articles.index', [
+            'articles' => $articles,
+            'newsletter_id' => $newsletter_id,
+        ])->with(request()->input('page'));
+    }
+
+
+    public function view(string $newsletter_id)
+    {
+        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
+        $news = News::where('id', $newsletter_id)->get();
+        return view('articles.view', [
+            'news' => $news,
             'articles' => $articles,
             'newsletter_id' => $newsletter_id,
         ])->with(request()->input('page'));
@@ -94,7 +106,7 @@ class ArticleController extends Controller
         $articles->picUrl = $request->get('picUrl');
         $articles->save();
 
-        return redirect()->route('articles.index', ['newsletter_id' => $articles->newsletter_id])
+        return redirect()->route('articles.show', ['newsletter_id' => $articles->newsletter_id])
             ->with('success', 'Article updated successfully');
 
     }
@@ -106,6 +118,6 @@ class ArticleController extends Controller
     {
         $article = Articles::find($id);
         $article->delete();
-        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article deleted successfully.');
+        return redirect()->route('articles.show', ['newsletter_id' => $newsletter_id])->with('success', 'Article deleted successfully.');
     }
 }

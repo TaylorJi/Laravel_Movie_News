@@ -4,9 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\SearchController;
-
-// namespace App\Http\Controllers\OrgController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +15,13 @@ use App\Http\Controllers\SearchController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/', function () {
+//     return view('login');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -45,7 +42,8 @@ Route::get('news/destroy/{id}', [NewsController::class, 'destroy'])->name('news.
 Route::get('news/delete/{id}', [NewsController::class, 'destroy'])->name('news.delete');
 Route::get('news/finalview', [NewsController::class, 'finalview'])->name('news.finalview');
 
-Route::get('articles/show/{id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('articles/show/{newsletter_id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('articles/view/{id}', [ArticleController::class, 'view'])->name('articles.view');
 Route::get('articles/index', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
 Route::put('articles/update', [ArticleController::class, 'update'])->name('articles.update');
@@ -53,7 +51,7 @@ Route::get('/articles/create/{newsletter_id}', [ArticleController::class, 'creat
 Route::post('articles/store', [ArticleController::class, 'store'])->name('articles.store');
 Route::get('articles/destroy/{id}/{newsletter_id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 
-Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
+// Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
 
 Route::resource("/news", NewsController::class )->middleware(['auth']);
 
