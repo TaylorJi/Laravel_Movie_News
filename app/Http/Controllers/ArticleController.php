@@ -47,7 +47,7 @@ class ArticleController extends Controller
         ]);
         $article->save();
 
-        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article added successfully.');
+        return redirect()->route('articles.show', ['newsletter_id' => $newsletter_id])->with('success', 'Article added successfully.');
     }
 
 
@@ -104,7 +104,7 @@ class ArticleController extends Controller
         $articles->picUrl = $request->get('picUrl');
         $articles->save();
 
-        return redirect()->route('articles.index', ['newsletter_id' => $articles->newsletter_id])
+        return redirect()->route('articles.show', ['newsletter_id' => $articles->newsletter_id])
             ->with('success', 'Article updated successfully');
 
     }
@@ -116,6 +116,6 @@ class ArticleController extends Controller
     {
         $article = Articles::find($id);
         $article->delete();
-        return redirect()->route('articles.show', ['id' => $newsletter_id])->with('success', 'Article deleted successfully.');
+        return redirect()->route('articles.show', ['newsletter_id' => $newsletter_id])->with('success', 'Article deleted successfully.');
     }
 }

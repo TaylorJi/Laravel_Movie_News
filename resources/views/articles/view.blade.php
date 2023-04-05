@@ -63,28 +63,39 @@
                 height: 100%;
             }
         </style>
+        @if ($articles->isNotEmpty())
+            <h1 class="title">Newsletter #{{ $articles[0]->newsletter_id }} - {{ $articles[0]->updated_at }}</h1>
 
-        <h1 class="title">Newsletter #{{ $articles[0]->newsletter_id }} - {{ $articles[0]->updated_at }}</h1>
-
-        @foreach ($articles as $item)
+            @foreach ($articles as $item)
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="article-title">{{ $item->id }}. {{ $item->title }}</div>
+                                @if ($item->picUrl)
+                                    <img src="{{ $item->picUrl }}" alt="{{ $item->title }}" class="article-image">
+                                @endif
+                                <div class="article-content">
+                                    <div class="article-description">{!! $item->description !!}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @unless ($loop->last)
+                    <div class="row-divider"></div>
+                @endunless
+            @endforeach
+        @else
             <table class="table">
                 <tbody>
                     <tr>
                         <td>
-                            <div class="article-title">{{ $item->id }}. {{ $item->title }}</div>
-                            @if ($item->picUrl)
-                                <img src="{{ $item->picUrl }}" alt="{{ $item->title }}" class="article-image">
-                            @endif
-                            <div class="article-content">
-                                <div class="article-description">{!! $item->description !!}</div>
-                            </div>
+                            No Articles, create one first
                         </td>
                     </tr>
                 </tbody>
             </table>
-            @unless ($loop->last)
-                <div class="row-divider"></div>
-            @endunless
-        @endforeach
+        @endif
     </div>
 </x-app-layout>

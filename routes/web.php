@@ -44,7 +44,7 @@ Route::get('news/destroy/{id}', [NewsController::class, 'destroy'])->name('news.
 Route::get('news/delete/{id}', [NewsController::class, 'destroy'])->name('news.delete');
 Route::get('news/finalview', [NewsController::class, 'finalview'])->name('news.finalview');
 
-Route::get('articles/show/{id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('articles/show/{newsletter_id}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('articles/view/{id}', [ArticleController::class, 'view'])->name('articles.view');
 Route::get('articles/index', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
