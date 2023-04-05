@@ -44,10 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function orgs()
-    {
-        return $this->hasMany(Org::class);
-    }
+    // public function orgs()
+    // {
+    //     return $this->hasMany(Org::class);
+    // }
     public function news()
     {
         return $this->hasMany(News::class);

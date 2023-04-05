@@ -35,7 +35,6 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'picUrl' => 'required',
         ]);
 
         $newsletter_id = $request->input('newsletter_id');

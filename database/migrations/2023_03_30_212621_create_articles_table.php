@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreign('newsletter_id')->references('id')->on('news')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->longText('description');
-            $table->longText('picUrl');
+            $table->longText('picUrl')->nullable();
             $table->timestamps();
         });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades;
@@ -284,9 +285,12 @@ class NewsController extends Controller
     //     return view("news.finalview", ['news' => $news]);
     // }
 
-    // public function welcome()
-    // {
-    //     $news = News::latest('updated_at')->get();
-    //     return view("welcome", ['news' => $news]);
-    // }
+    public function welcome()
+    {
+        $news = News::latest('updated_at')->get();
+        $articles = Articles::where('newsletter_id', $news[0]->id)->get();
+        return view("welcome", ['news' => $news, 'articles' => $articles]);
+        // $news = News::latest('updated_at')->get();
+        // return redirect()->route('', ['id' => $news[0]->id]);
+    }
 }
