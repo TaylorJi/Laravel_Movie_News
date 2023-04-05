@@ -7,6 +7,63 @@
 
     <title>Laravel</title>
 
+    <style>
+        .article-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 50px;
+            margin-left: 50px;
+        }
+
+        .title {
+            color: blue;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .table {
+            border-collapse: separate;
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: transparent;
+            border-spacing: 0;
+            margin-left: 20px;
+
+        }
+
+        .table td {
+            border: none;
+            padding: 0;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .table .row-divider {
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .article-image {
+            display: block;
+            float: left;
+            width: 25%;
+            height: auto;
+        }
+
+        .article-content {
+            display: block;
+            overflow: hidden;
+        }
+
+        .article-description {
+            float: right;
+            width: 75%;
+            height: 100%;
+        }
+    </style>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -44,35 +101,56 @@
         @endif
     </div>
 
-    @php
+    {{-- @php
         $counter = 0;
-    @endphp
+    @endphp --}}
 
-    @foreach ($news as $item)
-        @if ($item->is_active == 1)
-            @if ($counter < 5)
-                <div class="container py-5">
-                    <div class="card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ $item->picUrl }}" class="w-12 h-20 object-cover rounded"
-                                    alt="{{ $item->title }}">
-                                <div class="ml-4">
-                                    <a href="#" class="text-blue-600 hover:underline">{{ $item->title }}</a>
-                                    <p class="text-gray-700 text-sm">{{ $item->description }}</p>
-                                </div>
+    {{-- @foreach ($news as $item) --}}
+    {{-- @if ($item->is_active == 1) --}}
+    {{-- @if ($counter < 5) --}}
+    @if ($articles->isNotEmpty())
+        <h1 class="title">Newsletter #{{ $articles[0]->newsletter_id }} - {{ $articles[0]->updated_at }}</h1>
+
+        @foreach ($articles as $item)
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="article-title">{{ $item->id }}. {{ $item->title }}</div>
+                            @if ($item->picUrl)
+                                <img src="{{ $item->picUrl }}" alt="{{ $item->title }}" class="article-image">
+                            @endif
+                            <div class="article-content">
+                                <div class="article-description">{!! $item->description !!}</div>
                             </div>
-                            </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            @endif
-            @php
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            {{-- @unless ($loop->last)
+                <div class="row-divider"></div>
+            @endunless --}}
+        @endforeach
+    @else
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        No Articles, create one first
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    @endif
+    {{-- @unless ($loop->last)
+        <div class="row-divider"></div>
+    @endunless --}}
+    {{-- @endif --}}
+    {{-- @php
                 $counter++;
-            @endphp
-        @endif
-    @endforeach
+            @endphp --}}
+    {{-- @endif --}}
+    {{-- @endforeach --}}
     {{-- </tbody> --}}
     {{-- </table> --}}
 </body>

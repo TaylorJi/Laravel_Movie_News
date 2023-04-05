@@ -4,8 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ArticleController;
-
-// namespace App\Http\Controllers\OrgController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
