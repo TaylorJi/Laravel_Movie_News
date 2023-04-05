@@ -45,8 +45,8 @@
                         <td class="border px-4 py-2">{{ $item->id }}</td>
                         <td class="border px-4 py-2">{{ $item->title }}</td>
                         <td class="border px-4 py-2" style="max-width: 150px; max-height: 100px">
-                            <img src="{{ $item->logoUrl }}" class="object-cover rounded"
-                                alt="{{ $item->title }}" style="width: 150px; height: 100px">
+                            <img src="{{ $item->logoUrl }}" class="object-cover rounded" alt="{{ $item->title }}"
+                                style="width: 150px; height: 100px">
                         </td>
                         <td class="border px-4 py-2">{{ $item->is_active }}</td>
                         <td class="border px-4 py-2">{{ $item->created_at }}</td>
@@ -69,5 +69,13 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    <div class="my-4" style="margin: 20px">
+        <h2 class="text-lg font-medium">Team</h2>
+        <div>Jashinjot()</div>
+        <div>Johnathan(A01256345)</div>
+        <div>Siwoon Lim (A01181611)</div>
+        <div>Taylor Ji()</div>
     </div>
 </x-app-layout>
