@@ -30,6 +30,7 @@
                     <th class="px-4 py-2">Active</th>
                     <th class="px-4 py-2">Created Date</th>
                     <th class="px-4 py-2">Last Updated Date</th>
+                    <th class="px-4 py-2">CRUD</th>
                     <th class="px-4 py-2">&nbsp;</th>
                 </tr>
             </thead>
@@ -44,14 +45,18 @@
                         <td class="border px-4 py-2">{{ $item->created_at }}</td>
                         <td class="border px-4 py-2">{{ $item->updated_at }}</td>
                         <td class="border px-4 py-2">
-                            <a href="{{ route('news.show', $item->id) }}"
+                            <a href="{{ route('articles.view', $item->id) }}"
                                 class="text-white px-2 py-1 rounded-md transition"
                                 style="background-color: rgb(75, 75, 237)">View</a>
+                            <a href="{{ route('news.edit', $item->id) }}"
+                                class="text-black px-2 py-1 rounded-md transition" style="background-color: cyan">Edit
+                                Newsletter</a>
                             <a href="{{ route('articles.show', $item->id) }}"
-                                class="text-white px-2 py-1 rounded-md transition"
-                                style="background-color: green">Edit</a>
+                                class="text-white px-2 py-1 rounded-md transition" style="background-color: green">Edit
+                                Ariticles</a>
                             <a href="{{ route('news.delete', $item->id) }}"
-                                class="text-white px-2 py-1 rounded-md transition" style="background-color: red">Del</a>
+                                class="text-white px-2 py-1 rounded-md transition"
+                                style="background-color: red">Delete</a>
                         </td>
                     </tr>
                 @endforeach

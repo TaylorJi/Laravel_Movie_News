@@ -35,6 +35,7 @@
                     <th class="px-4 py-2">image</th>
                     <th class="px-4 py-2">Created Date</th>
                     <th class="px-4 py-2">Last Updated Date</th>
+                    <th class="px-4 py-2">CRUD</th>
                     <th class="px-4 py-2">&nbsp;</th>
                 </tr>
             </thead>
@@ -56,7 +57,7 @@
                                     style="background-color: green">Edit</a>
                                 <a href="{{ route('articles.destroy', ['id' => $item->id, 'newsletter_id' => $item->newsletter_id]) }}"
                                     class="text-white px-2 py-1 rounded-md transition"
-                                    style="background-color: red">Del</a>
+                                    style="background-color: red">Delete</a>
                             </td>
                         </tr>
                     @endforeach

@@ -63,6 +63,16 @@ class ArticleController extends Controller
         ])->with(request()->input('page'));
     }
 
+
+    public function view(string $newsletter_id)
+    {
+        $articles = Articles::where('newsletter_id', $newsletter_id)->with('newsletter')->latest()->paginate(5);
+        return view('articles.view', [
+            'articles' => $articles,
+            'newsletter_id' => $newsletter_id,
+        ])->with(request()->input('page'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

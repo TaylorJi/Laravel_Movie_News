@@ -36,32 +36,19 @@
                     class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="Title">
             </div>
 
-            <div class="form-group col-span-3">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description:</label>
-                <div class="border border-gray-300 p-2 rounded-md shadow-sm">
-                    <textarea class="ckeditor form-control" name="description" id="description" rows="5">{{ $news->description }}</textarea>
-                </div>
-            </div>
-
             <div class="form-group">
-                <label for="picUrl" class="block text-sm font-medium text-gray-700">Image:</label>
-                <input type="text" name="picUrl" value="{{ $news->picUrl }}" id="picUrl"
-                    class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="imageUrl">
+                <label for="logoUrl" class="block text-sm font-medium text-gray-700">Logo:</label>
+                <input type="text" name="logoUrl" value="{{ $news->logoUrl }}" id="logoUrl"
+                    class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="logo">
             </div>
         </div>
 
         <div class="flex justify-center mt-6">
-            <button type="submit" class="px-4 py-2 font-semibold text-white rounded" style="background-color: rgb(48, 220, 117)">
+            <button type="submit" class="px-4 py-2 font-semibold text-white rounded"
+                style="background-color: rgb(48, 220, 117)">
                 Update
             </button>
         </div>
     </form>
-
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.ckeditor').ckeditor();
-        });
-    </script>
 
 </x-app-layout>

@@ -146,6 +146,7 @@ class NewsController extends Controller
             'news' => News::findOrFail($id),
         ]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -205,8 +206,7 @@ class NewsController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required'
         ]);
         $news = News::find($request->get('id'));
 
@@ -215,8 +215,7 @@ class NewsController extends Controller
 
         // Getting values from the blade template form
         $news->title = $request->get('title');
-        $news->description = $request->get('description');
-        $news->picUrl = $request->get('picUrl');
+        $news->logoUrl = $request->get('logoUrl');
         $news->is_active = 1;
         $news->save();
 
