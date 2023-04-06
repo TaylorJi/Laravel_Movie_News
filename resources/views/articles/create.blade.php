@@ -1,16 +1,29 @@
 <x-app-layout>
-    <div style="margin: 20px">
+    <div style="margin: 20px; display: flex; flex-direction: column; align-items: center;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Articles') }}
             </h2>
         </x-slot>
-        <div class="flex justify-between items-center">
+        {{-- <div class="flex justify-between items-center">
             <h2 class="text-lg font-medium">Add articles</h2>
             <a href="{{ route('articles.show', ['newsletter_id' => $newsletter_id]) }}"
                 class="text-white font-bold py-2 px-4 rounded" style="background-color: rgb(60, 36, 240)">
                 Back
             </a>
+        </div> --}}
+
+
+         <div style="display: flex; justify-content: flex-end; width: 100%;">
+            <a href="{{ route('articles.show', ['newsletter_id' => $newsletter_id]) }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+                style="background-color:lightblue">
+                Back
+            </a>
+        </div>
+
+        <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+            <h2 class="text-lg font-medium">Add Article</h2>
         </div>
 
         @if ($errors->any())
@@ -51,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-center">
+            <div class="flex justify-center mt-6">
                 <button type="submit" class="text-white font-bold py-2 px-4 rounded"
                     style="background-color: rgb(62, 90, 231)">
                     Submit
