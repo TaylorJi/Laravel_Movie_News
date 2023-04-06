@@ -27,3 +27,10 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # PHP Extension
 RUN docker-php-ext-install gettext intl pdo_mysql gd 
+
+# Copy the custom entrypoint script and make it executable
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Set the entrypoint to the custom script
+ENTRYPOINT ["entrypoint.sh"]
