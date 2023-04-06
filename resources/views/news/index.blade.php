@@ -80,10 +80,10 @@
     </div>
 
     <div class="my-4" style="margin: 20px">
-        <h2 class="text-lg font-medium">Team</h2>
-        <div>Jashinjot()</div>
-        <div>Johnathan(A01256345)</div>
+        <h2 class="text-lg font-medium">Team:-</h2>
+        <div>Jashanjot Singh (A01275230)</div>
+        <div>Johnathan (A01256345)</div>
         <div>Siwoon Lim (A01181611)</div>
-        <div>Taylor Ji(A01304056)</div>
+        <div>Taylor Ji (A01304056)</div>
     </div>
 </x-app-layout>
