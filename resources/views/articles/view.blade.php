@@ -1,4 +1,10 @@
 <x-app-layout>
+    <div style="display: flex; justify-content: flex-end; width: 100%;">
+        <a href="{{ route('news.index') }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+            style="background-color:lightblue">
+            Back
+        </a>
+    </div>
     <div style="margin: 80px; border: 3px solid #000000; padding: 20px; display: inline-block;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">

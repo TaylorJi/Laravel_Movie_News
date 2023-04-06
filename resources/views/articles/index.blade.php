@@ -15,6 +15,13 @@
             </div>
         @endif
 
+        <div style="display: flex; justify-content: flex-end; width: 100%;">
+            <a href="{{ route('news.index') }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+                style="background-color:lightblue">
+                Back
+            </a>
+        </div>
+
         <div class="flex justify-between items-center"
             style="display: flex; flex-direction: column; align-items: center; font-weight: bold; margin-bottom: 50px;">
             <h2 class="text-lg font-medium" style="margin-bottom: 20px">Articles List</h2>

@@ -6,7 +6,7 @@
             </h2>
         </x-slot>
         <div style="display: flex; justify-content: flex-end; width: 100%;">
-            <a href="{{ route('articles.index') }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+            <a href="{{ route('articles.show', $articles->newsletter_id) }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
                 style="background-color:lightblue">
                 Back
             </a>
