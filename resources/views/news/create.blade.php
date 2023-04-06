@@ -1,16 +1,22 @@
 <x-app-layout>
-    <div style="margin: 20px">
+    <div style="margin: 20px; display: flex; flex-direction: column; align-items: center;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('News') }}
             </h2>
         </x-slot>
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg font-medium">Add News</h2>
-            <a href="{{ route('news.index') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+        <div style="display: flex; justify-content: flex-end; width: 100%;">
+            <a href="{{ route('news.index') }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+                style="background-color:lightblue">
                 Back
             </a>
+        </div>
+
+        <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+            <h2 class="text-lg font-medium">Add News</h2>
+
         </div>
 
         @if ($errors->any())
@@ -28,17 +34,18 @@
         <form action="{{ route('news.store') }}" method="POST" class="mt-5 space-y-6">
             @csrf
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                style="display: flex; flex-direction: column; align-items: center;">
                 <div class="w-full">
                     <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
                     <input type="text" id="title" name="title"
-                        class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="Title">
+                        class="form-input rounded-md shadow-sm mt-1 block" placeholder="Title">
                 </div>
 
                 <div class="w-full">
                     <label for="logoUrl" class="block text-gray-700 font-bold mb-2">Image:</label>
                     <input type="text" id="logoUrl" name="logoUrl"
-                        class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="logoUrl">
+                        class="form-input rounded-md shadow-sm mt-1 block" placeholder="logoUrl">
                 </div>
             </div>
 

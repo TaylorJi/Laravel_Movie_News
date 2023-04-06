@@ -5,25 +5,19 @@
                 {{ __('News') }}
             </h2>
         </x-slot>
-          <form action="{{ route('search') }}" method="get">
-            <input type="text" name="search" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
 
-
-
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg font-medium">Newsletters List</h2>
+        <div class="flex justify-between items-center"
+            style="display: flex; flex-direction: column; align-items: center; font-weight: bold; margin-bottom: 50px;">
+            <h2 class="text-lg font-medium" style="margin-bottom: 20px">Newsletters List</h2>
             <div class="flex space-x-2">
                 <div class="flex space-x-2 mr-4">
                     <a href="{{ route('news.create') }}" class="text-white px-4 py-2 rounded-md transition"
-                        style="background-color: rgb(11, 234, 26)">Create a newsletter</a>
+                        style="background-color: rgb(13, 117, 20)">Create a newsletter</a>
                 </div>
                 <div class="flex space-x-2 ml-4">
                     <a href="{{ route('news.finalview') }}" class="text-white px-4 py-2 rounded-md transition"
                         style="background-color: rgb(156, 37, 95)">Show 5 active newsletters</a>
                 </div>
-
             </div>
 
         </div>
@@ -33,7 +27,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-      
+
         <table class="table-auto w-full">
             <thead>
                 <tr>
@@ -49,7 +43,7 @@
             </thead>
             <tbody>
                 @foreach ($news as $item)
-                    <tr>
+                    <tr style="text-align: center;">
                         <td class="border px-4 py-2">{{ $item->id }}</td>
                         <td class="border px-4 py-2">{{ $item->title }}</td>
                         <td class="border px-4 py-2" style="max-width: 150px; max-height: 100px">

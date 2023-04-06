@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Articles;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\News;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Laravel\Scout\Searchable;
 
 
 

@@ -7,8 +7,9 @@
         </x-slot>
 
 
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg font-medium">Newsletters List</h2>
+        <div class="flex justify-between items-center"
+            style="display: flex; flex-direction: column; align-items: center; font-weight: bold; margin-bottom: 50px;">
+            <h2 class="text-lg font-medium">Activated Newsletters List</h2>
         </div>
 
         <table class="table-auto w-full">
@@ -26,7 +27,7 @@
             <tbody>
                 {{-- @foreach ($news as $item) --}}
                 @foreach ($news->where('is_active', 1)->take(5) as $items)
-                    <tr>
+                    <tr style="text-align: center;">
                         <td class="border px-4 py-2">{{ $items->id }}</td>
                         <td class="border px-4 py-2">{{ $items->title }}</td>
                         <td class="border px-4 py-2" style="max-width: 150px; max-height: 100px">

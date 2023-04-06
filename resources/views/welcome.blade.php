@@ -118,13 +118,6 @@
         @endif
     </div>
 
-    {{-- @php
-        $counter = 0;
-    @endphp --}}
-
-    {{-- @foreach ($news as $item) --}}
-    {{-- @if ($item->is_active == 1) --}}
-    {{-- @if ($counter < 5) --}}
     @if ($articles->isNotEmpty())
         <img src="{{ $news[0]->logoUrl }}" class="article-logo" alt="{{ $articles[0]->title }}">
         <h1 class="title">
@@ -159,17 +152,6 @@
             </tbody>
         </table>
     @endif
-    {{-- @unless ($loop->last)
-        <div class="row-divider"></div>
-    @endunless --}}
-    {{-- @endif --}}
-    {{-- @php
-                $counter++;
-            @endphp --}}
-    {{-- @endif --}}
-    {{-- @endforeach --}}
-    {{-- </tbody> --}}
-    {{-- </table> --}}
 </body>
 
 </html>

@@ -1,16 +1,20 @@
 <x-app-layout>
-    <div style="margin: 20px">
+    <div style="margin: 20px; display: flex; flex-direction: column; align-items: center;">
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Articles') }}
             </h2>
         </x-slot>
-        <div class="flex flex-row justify-between">
-            <h2 class="text-2xl font-bold">Edit articles</h2>
-            <a href="{{ route('articles.index') }}"
-                class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-700">
+        <div style="display: flex; justify-content: flex-end; width: 100%;">
+            <a href="{{ route('articles.index') }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
+                style="background-color:lightblue">
                 Back
             </a>
+        </div>
+
+        <div
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+            <h2 class="text-lg font-medium">Edit Article</h2>
         </div>
 
         @if ($errors->any())

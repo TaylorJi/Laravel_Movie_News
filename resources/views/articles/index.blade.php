@@ -14,21 +14,17 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <form action="{{ route('search') }}" method="get">
-            <input type="text" name="search" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
 
-        <div class="flex justify-between items-center">
-            <h2 class="text-lg font-medium">Articles List</h2>
+        <div class="flex justify-between items-center"
+            style="display: flex; flex-direction: column; align-items: center; font-weight: bold; margin-bottom: 50px;">
+            <h2 class="text-lg font-medium" style="margin-bottom: 20px">Articles List</h2>
             <div class="flex space-x-2">
                 <a href="{{ route('articles.create', ['newsletter_id' => $newsletter_id]) }}"
-                    class="text-white px-4 py-2 rounded-md transition" style="background-color: rgb(11, 234, 26)">Create
-                    an
-                    Article</a>
+                    class="text-white px-4 py-2 rounded-md transition" style="background-color: rgb(13, 117, 20)">Create
+                    an Article</a>
             </div>
         </div>
-      
+
 
 
         <table class="table-auto w-full">
@@ -47,7 +43,7 @@
             <tbody>
                 @if ($articles->isNotEmpty())
                     @foreach ($articles as $item)
-                        <tr>
+                        <tr style="text-align: center;">
                             <td class="border px-4 py-2">{{ $item->id }}</td>
                             <td class="border px-4 py-2">{{ $item->title }}</td>
                             <td class="border px-4 py-2">{!! $item->description !!}</td>
@@ -56,7 +52,6 @@
                             <td class="border px-4 py-2">{{ $item->created_at }}</td>
                             <td class="border px-4 py-2">{{ $item->updated_at }}</td>
                             <td class="border px-4 py-2">
-                                {{-- <a href="{{ route('news.show', $item->id) }}" class="text-white px-2 py-1 rounded-md transition" style="background-color: rgb(75, 75, 237)">Generate</a> --}}
                                 <a href="{{ route('articles.edit', $item->id) }}"
                                     class="text-white px-2 py-1 rounded-md transition"
                                     style="background-color: green">Edit</a>

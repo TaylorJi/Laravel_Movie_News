@@ -21,10 +21,6 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -34,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource("/news", NewsController::class)->middleware(['auth']);
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('news/store', [NewsController::class, 'store'])->name('news.store');
     Route::get('news/show/{id}', [NewsController::class, 'show'])->name('news.show');
@@ -54,10 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::get('articles/destroy/{id}/{newsletter_id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 });
 
-
+Route::resource("/news", NewsController::class)->middleware(['auth']);
 Route::get('/', [NewsController::class, 'welcome'])->name('welcome');
-
-
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
