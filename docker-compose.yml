@@ -1,49 +1,29 @@
 version: '3.8'
 
-services:
-  app:
-    build: .
-    container_name: laravel_app
-    volumes:
-      - ./:/var/www/html
-    ports:
-      - 8888:80
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - APP_KEY=base64:UBGy5y2KV/LPlhLE0PYH5AvHhK8EkFkUmJCZKf0BwEY=
-      - APP_URL=http://localhost
-      - DB_CONNECTION=mysql
-      - DB_HOST=127.0.0.1
-      - DB_PORT=3333
-      - DB_DATABASE=LaravelAuth
-      - DB_USERNAME=root
-      - DB_PASSWORD=secret
-    depends_on:
-      - db
-    networks:
-      - app_network
-    restart: unless-stopped
+volumes:
+  datafiles:
 
-  db:
-    image: mariadb:latest
-    container_name: maria_db
+services: 
+  mysql_db:
+    image: mariadb
+    container_name: newsletter
     environment:
       - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_TCP_PORT=3333
       - MYSQL_DATABASE=LaravelAuth
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=secret
-    volumes:
-      - db_data:/var/lib/mysql
     ports:
       - 3333:3306
-    networks:
-      - app_network
-    restart: unless-stopped
+    volumes:
+      - datafiles:/var/lib/mysql
+    restart: always
 
-volumes:
-  db_data:
-
-networks:
-  app_network:
-    driver: bridge
+  laravel-docker:
+    container_name: newsletterApp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "php artisan cache:clear && php artisan config:cache && php artisan serve --host=0.0.0.0 && php artisan migrate && php artisan migrate:refresh --seed"
+    ports:
+      - 8888:8000
+    depends_on:
+      - mysql_db
