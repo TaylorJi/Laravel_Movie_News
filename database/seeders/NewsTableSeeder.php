@@ -39,5 +39,12 @@ class NewsTableSeeder extends Seeder
         ]);
         $s2->save();
 
+        $s3 = new \App\Models\News([
+            'title' => 'Vancouver Sun',
+            'logoUrl' => "https://images.squarespace-cdn.com/content/v1/5b22331ee2ccd1f63c2f5b7f/1569193640394-DXOHXKMFQX83BL0QAYCZ/vancouver-sun-logo-feature.jpg",
+            'is_active' => 1
+        ]);
+        $s3->save();
+
     }
 }

@@ -42,7 +42,7 @@ class ArticlesTableSeeder extends Seeder
         ]);
         $s2->save();
 
-        $s2 = new \App\Models\Articles([
+        $s3 = new \App\Models\Articles([
             'newsletter_id' => 2,
             'title' => "WEEKEND BOX OFFICE RESULTS: DUNGEONS & DRAGONS DETHRONES JOHN WICK",
             'description' => "March has ended. None of its sequels lasted longer than a single week at No. 1 due to competition, and the latest franchise attempt is likely to suffer the same fate next week as a new video game adaptation takes over. Nevertheless, March produced three $100+ million grossers, two of which are headed over $150 million and one that’s still shooting for $200 million. Will they be joined by a fourth? The new Dungeons & Dragons film certainly has its supporters from both its fandom and even critics, but its opening numbers likely aren’t impressing those who put up the dough for it.
@@ -55,6 +55,34 @@ John Wick: Chapter 4 fell 61.8% in its second weekend down to $28.2 million; tha
             'picUrl' => "https://www.gamespot.com/a/uploads/scale_landscape/1562/15626911/4071764-untitled-1.jpg",
             'position' => 'Left'
         ]);
-        $s2->save();
+        $s3->save();
+
+        $s4 = new \App\Models\Articles([
+            'newsletter_id' => 2,
+            'title' => "THE DARK KNIGHT",
+            'description' => "An incomparable crime thriller and superhero film, and an instant classic in both genres",
+            'picUrl' => "https://resizing.flixster.com/WAHXGKleT3QvhqHUlFGIRgcQAjU=/206x305/v2/https://flxt.tmsimg.com/assets/p173378_p_v8_au.jpg",
+            'position' => 'Left'
+        ]);
+        $s4->save();
+
+        $s5 = new \App\Models\Articles([
+            'newsletter_id' => 3,
+            'title' => "Q&A with Premier David Eby: Watch the complete conversation here",
+            'description' => "It'll surely be a lively discussion with Eby fielding questions from columnist Vaughn Palmer and Conversations Live host Stuart McNish.",
+            'picUrl' => "https://smartcdn.gprod.postmedia.digital/vancouversun/wp-content/uploads/2023/03/cabinet-changes-bc-20221207-1.jpg?quality=90&strip=all&w=1128&h=846&type=webp&sig=HUNIJ6JeIHatzxEzz1hTcQ",
+            'position' => 'Left'
+        ]);
+        $s5->save();
+
+
+        $s6 = new \App\Models\Articles([
+            'newsletter_id' => 3,
+            'title' => "Vancouver's East Hastings Street, the day after the removal of tent encampments",
+            'description' => "A day after Vancouver city crews descended on East Hastings Street to remove dozens of tents and structures in a Downtown Eastside encampment, they were back again Thursday morning.",
+            'picUrl' => "https://smartcdn.gprod.postmedia.digital/vancouversun/wp-content/uploads/2023/04/png-0406n-dtesdecampment-258.jpg?quality=90&strip=all&w=1128&h=846&type=webp&sig=oAnzgt0eEiNBoJS3RFbhCg",
+            'position' => 'Left'
+        ]);
+        $s6->save();
     }
 }
