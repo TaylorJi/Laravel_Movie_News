@@ -51,7 +51,12 @@
                 padding-top: 20px;
             }
 
-            .article-image {
+            .article-content {
+                display: block;
+                overflow: hidden;
+            }
+
+            .article-image_left {
                 display: block;
                 float: left;
                 width: 300px;
@@ -59,12 +64,7 @@
                 margin-left: 100px;
             }
 
-            .article-content {
-                display: block;
-                overflow: hidden;
-            }
-
-            .article-description {
+            .article-description_left {
                 float: right;
                 width: 500px%;
                 height: 400px%;
@@ -78,6 +78,31 @@
                 line-height: 1.5;
                 max-height: calc(1.5em * 100);
             }
+
+
+            .article-image_right {
+                display: block;
+                float: right;
+                width: 300px;
+                height: 400px;
+                margin-right: 100px;
+            }
+
+            .article-description_right {
+                float: left;
+                width: 500px%;
+                height: 400px%;
+                margin-left: 50px;
+                margin-right: 100px;
+                font-size: 18px;
+                white-space: pre-line;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+                line-height: 1.5;
+                max-height: calc(1.5em * 100);
+            }
+
 
             .article-logo {
                 display: block;
@@ -99,11 +124,27 @@
                             <td>
                                 <div class="article-title">{{ $item->id }}. {{ $item->title }}</div>
                                 @if ($item->picUrl)
-                                    <img src="{{ $item->picUrl }}" alt="{{ $item->title }}" class="article-image">
+                                    @if ($item->position == 'Left')
+                                        <img src="{{ $item->picUrl }}" alt="{{ $item->title }}"
+                                            class="article-image_left">
+                                        <div class="article-content">
+                                            <div class="article-description_left">{!! $item->description !!}</div>
+                                        </div>
+                                    @else
+                                        <img src="{{ $item->picUrl }}" alt="{{ $item->title }}"
+                                            class="article-image_right">
+
+                                        <div class="article-content">
+                                            <div class="article-description_right">{!! $item->description !!}</div>
+                                        </div>
+                                    @endif
+
+
+                                    {{-- <img src="{{ $item->picUrl }}" alt="{{ $item->title }}" class="article-image"> --}}
                                 @endif
-                                <div class="article-content">
+                                {{-- <div class="article-content">
                                     <div class="article-description">{!! $item->description !!}</div>
-                                </div>
+                                </div> --}}
                             </td>
                         </tr>
                     </tbody>

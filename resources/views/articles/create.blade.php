@@ -62,6 +62,17 @@
                     <input type="text" id="picUrl" name="picUrl"
                         class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="imageUrl">
                 </div>
+
+                <div class="w-full">
+                    <label for="position" class="block text-sm font-medium text-gray-700">Position:</label>
+                    {{-- <div class="border border-gray-300 p-2 rounded-md shadow-sm">
+                        <textarea class="ckeditor form-control" name="position" id="position" rows="5"></textarea>
+                    </div> --}}
+                    <input type="radio" id="left" name="position" value="left">
+                    <label for="left">Left</label><br>
+                    <input type="radio" id="right" name="position" value="right">
+                    <label for="right">Right</label><br>
+                </div>
             </div>
 
             <div class="flex justify-center mt-6">

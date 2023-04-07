@@ -6,8 +6,8 @@
             </h2>
         </x-slot>
         <div style="display: flex; justify-content: flex-end; width: 100%;">
-            <a href="{{ route('articles.show', $articles->newsletter_id) }}" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded"
-                style="background-color:lightblue">
+            <a href="{{ route('articles.show', $articles->newsletter_id) }}"
+                class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" style="background-color:lightblue">
                 Back
             </a>
         </div>
@@ -52,6 +52,28 @@
                     <input type="text" name="picUrl" value="{{ $articles->picUrl }}" id="picUrl"
                         class="form-input rounded-md shadow-sm mt-1 block w-full" placeholder="imageUrl">
                 </div>
+            </div>
+
+            {{-- <div class="form-group col-span-3">
+                <label for="position" class="block text-sm font-medium text-gray-700">Position:</label>
+                <div class="border border-gray-300 p-2 rounded-md shadow-sm">
+                    <textarea class="ckeditor form-control" name="position" id="position" rows="5">{{ $articles->position }}</textarea>
+                </div>
+            </div> --}}
+            <div class="form-group col-span-3">
+                <p>Image Placement</p>
+                {{-- <input type="text" style="margin-left: 15px; width: 400px;" class="form-control" id="imagePosition" name="imagePosition" placeholder="Left or Right" value="{{ $news->imagePosition }}" required> --}}
+                @if ($articles->position == 'Left')
+                    <input type="radio" id="left" name="position" value="Left" checked>
+                    <label for="left">Left</label><br>
+                    <input type="radio" id="right" name="position" value="Right">
+                    <label for="right">Right</label><br>
+                @else
+                    <input type="radio" id="left" name="position" value="Left">
+                    <label for="left">Left</label><br>
+                    <input type="radio" id="right" name="position" value="Right" checked>
+                    <label for="right">Right</label><br>
+                @endif
             </div>
 
             <div class="flex justify-center mt-6">

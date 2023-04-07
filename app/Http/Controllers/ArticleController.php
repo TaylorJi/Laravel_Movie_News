@@ -48,6 +48,7 @@ class ArticleController extends Controller
         $article = new Articles([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
+            'position' => $request->get('position'),
             'picUrl' => $request->get('picUrl'),
             'newsletter_id' => $newsletter_id,
         ]);
@@ -110,6 +111,7 @@ class ArticleController extends Controller
         $articles->title = $request->get('title');
         $articles->description = $request->get('description');
         $articles->picUrl = $request->get('picUrl');
+        $articles->position = $request->get('position');
         $articles->save();
 
         return redirect()->route('articles.show', ['newsletter_id' => $articles->newsletter_id])
