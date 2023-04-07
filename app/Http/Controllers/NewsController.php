@@ -283,10 +283,9 @@ class NewsController extends Controller
 
     public function welcome()
     {
-        $news = News::latest('updated_at')->get();
+        $news = News::latest('updated_at')->where('is_active', 1)->get();
         $articles = Articles::where('newsletter_id', $news[0]->id)->get();
         return view("welcome", ['news' => $news, 'articles' => $articles]);
-        // $news = News::latest('updated_at')->get();
-        // return redirect()->route('', ['id' => $news[0]->id]);
     }
+
 }
