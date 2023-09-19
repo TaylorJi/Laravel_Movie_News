@@ -26,7 +26,8 @@ Temporary Items
 
 Dockerfile
 .env
-.evn.example
+.env.example
 package-lock.json
 package.json
+.gitignore
 ```
