@@ -35,3 +35,6 @@ Movie_News/
 ├── vite.config.js       # Vite build config
 └── artisan              # Laravel CLI entry point
 ```
+## ⚠️ Current Status
+
+> **Note:** The application is **not currently running** because the Docker environment has been shut down.
